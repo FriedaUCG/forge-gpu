@@ -1,0 +1,10 @@
+build/
+artifacts/
+*.log
+*.tmp
+*.rgba8
+*.png.tmp
+*.dSYM/
+.DS_Store
+__pycache__/
+*.pyc

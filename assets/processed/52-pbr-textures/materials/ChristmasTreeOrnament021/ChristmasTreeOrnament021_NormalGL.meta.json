@@ -1,0 +1,13 @@
+{
+  "width": 1024,
+  "height": 1024,
+  "format": "rgba8",
+  "mips": [
+    {
+      "level": 0,
+      "width": 1024,
+      "height": 1024,
+      "file": "ChristmasTreeOrnament021_NormalGL.png"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "width": 512,
+  "height": 512,
+  "format": "rgba8",
+  "mips": [
+    {
+      "level": 0,
+      "width": 512,
+      "height": 512,
+      "file": "DuckCM.png"
+    }
+  ]
+}

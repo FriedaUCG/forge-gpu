@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "materials": [
+    {
+      "name": "Metal046B",
+      "base_color_factor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_color_texture": "Metal046B_Color.png",
+      "metallic_factor": 1.0,
+      "roughness_factor": 1.0,
+      "metallic_roughness_texture": null,
+      "roughness_texture": "Metal046B_Roughness.png",
+      "metallic_texture": "Metal046B_Metalness.png",
+      "normal_texture": "Metal046B_NormalGL.png",
+      "normal_scale": 1.0,
+      "occlusion_texture": null,
+      "occlusion_strength": 1.0,
+      "emissive_factor": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "emissive_texture": null,
+      "alpha_mode": "OPAQUE",
+      "alpha_cutoff": 0.5,
+      "double_sided": false
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Material for space-shuttle.obj (exported by 3ds Max)
+newmtl Material__197
+Ka 0.2 0.2 0.2
+Kd 0.8 0.8 0.8
+Ks 0.3 0.3 0.3
+Ns 50.0
+map_Kd ShuttleDiffuseMap.png

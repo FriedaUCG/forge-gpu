@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "materials": [
+    {
+      "name": "WoodFloor051",
+      "base_color_factor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_color_texture": "WoodFloor051_Color.png",
+      "metallic_factor": 0.0,
+      "roughness_factor": 1.0,
+      "metallic_roughness_texture": null,
+      "roughness_texture": "WoodFloor051_Roughness.png",
+      "metallic_texture": null,
+      "normal_texture": "WoodFloor051_NormalGL.png",
+      "normal_scale": 1.0,
+      "occlusion_texture": "WoodFloor051_AmbientOcclusion.png",
+      "occlusion_strength": 1.0,
+      "emissive_factor": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "emissive_texture": null,
+      "alpha_mode": "OPAQUE",
+      "alpha_cutoff": 0.5,
+      "double_sided": false
+    }
+  ]
+}

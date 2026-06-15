@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>SDL_GPU Forge GPU Demo</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #050506;
+      color: #f3f4f6;
+      font: 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    #app,
+    #canvas {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #app {
+      position: fixed;
+      inset: 0;
+      background: #050506;
+    }
+
+    #canvas {
+      display: block;
+      border: 0;
+      outline: 0;
+      background: #050506;
+      touch-action: none;
+    }
+
+    #loading {
+      position: fixed;
+      inset: 0;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #050506;
+      transition: opacity 160ms ease;
+    }
+
+    #loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #loading-panel {
+      width: min(420px, calc(100vw - 48px));
+      text-align: center;
+    }
+
+    #status {
+      min-height: 22px;
+      font-weight: 600;
+    }
+
+    #progress {
+      width: 100%;
+      margin-top: 14px;
+    }
+
+    #fullscreen {
+      position: fixed;
+      left: 50%;
+      top: 12px;
+      z-index: 5;
+      transform: translateX(-50%);
+      border: 1px solid rgb(255 255 255 / 28%);
+      border-radius: 4px;
+      padding: 6px 9px;
+      color: #f7f7f8;
+      background: rgb(8 9 12 / 70%);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    #fullscreen:hover,
+    #fullscreen:focus-visible {
+      border-color: rgb(255 255 255 / 55%);
+      background: rgb(20 22 28 / 88%);
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+  </div>
+  <button id="fullscreen" type="button">Fullscreen</button>
+  <div id="loading" aria-live="polite">
+    <div id="loading-panel">
+      <div id="status">Loading...</div>
+      <progress id="progress" max="100" value="0" hidden></progress>
+    </div>
+  </div>
+  <script>
+    const canvasElement = document.getElementById("canvas");
+    const statusElement = document.getElementById("status");
+    const progressElement = document.getElementById("progress");
+    const loadingElement = document.getElementById("loading");
+    const fullscreenButton = document.getElementById("fullscreen");
+    const hasWebGPU = "gpu" in navigator;
+    let startupBlocked = !hasWebGPU;
+
+    globalThis.__sdlGpuBrowserStatusOverlayEnabled = false;
+
+    function setStatus(text) {
+      statusElement.textContent = text || "";
+      if (text) {
+        loadingElement.classList.remove("hidden");
+      } else {
+        loadingElement.classList.add("hidden");
+        canvasElement.focus();
+      }
+    }
+
+    function setStartupFailure(text) {
+      startupBlocked = true;
+      progressElement.hidden = true;
+      setStatus(text);
+    }
+
+    fullscreenButton.addEventListener("click", async () => {
+      canvasElement.focus();
+      try {
+        if (document.fullscreenElement) {
+          await document.exitFullscreen();
+        } else {
+          await document.documentElement.requestFullscreen();
+        }
+      } catch (error) {
+        console.warn("Fullscreen request failed:", error);
+      }
+    });
+
+    if (!hasWebGPU) {
+      setStartupFailure("WebGPU is not available in this browser.");
+    }
+
+    var Module = {
+      canvas: canvasElement,
+      noInitialRun: startupBlocked,
+      print(...args) {
+        console.log(...args);
+      },
+      printErr(...args) {
+        console.error(...args);
+      },
+      setStatus(text) {
+        if (startupBlocked) {
+          return;
+        }
+        if (!text) {
+          progressElement.hidden = true;
+        }
+        setStatus(text);
+      },
+      totalDependencies: 0,
+      monitorRunDependencies(left) {
+        if (startupBlocked) {
+          return;
+        }
+        this.totalDependencies = Math.max(this.totalDependencies, left);
+        if (left) {
+          const done = this.totalDependencies - left;
+          progressElement.hidden = false;
+          progressElement.value = this.totalDependencies > 0 ? (100 * done) / this.totalDependencies : 0;
+          setStatus("Preparing... " + done + "/" + this.totalDependencies);
+        } else {
+          progressElement.hidden = true;
+          setStatus("Starting...");
+        }
+      }
+    };
+
+    if (hasWebGPU) {
+      setStatus("Loading...");
+    }
+    window.onerror = (message) => {
+      setStartupFailure("Startup failed. See the browser console for details.");
+      console.error(message);
+    };
+    window.onunhandledrejection = (event) => {
+      setStartupFailure("Startup failed. See the browser console for details.");
+      console.error(event.reason || event);
+    };
+  </script>
+  {{{ SCRIPT }}}
+</body>
+</html>

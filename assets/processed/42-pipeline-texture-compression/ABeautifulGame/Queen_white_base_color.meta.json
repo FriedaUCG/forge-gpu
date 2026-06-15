@@ -1,0 +1,88 @@
+{
+  "source": "Queen_white_base_color.jpg",
+  "output": "Queen_white_base_color.png",
+  "original_width": 2048,
+  "original_height": 2048,
+  "output_width": 2048,
+  "output_height": 2048,
+  "mip_levels": [
+    {
+      "level": 0,
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "level": 1,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "level": 2,
+      "width": 512,
+      "height": 512
+    },
+    {
+      "level": 3,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "level": 4,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "level": 5,
+      "width": 64,
+      "height": 64
+    },
+    {
+      "level": 6,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "level": 7,
+      "width": 16,
+      "height": 16
+    },
+    {
+      "level": 8,
+      "width": 8,
+      "height": 8
+    },
+    {
+      "level": 9,
+      "width": 4,
+      "height": 4
+    },
+    {
+      "level": 10,
+      "width": 2,
+      "height": 2
+    },
+    {
+      "level": 11,
+      "width": 1,
+      "height": 1
+    }
+  ],
+  "settings": {
+    "max_size": 2048,
+    "generate_mipmaps": true,
+    "output_format": "png",
+    "compression": "basisu"
+  },
+  "compression": {
+    "codec": "uastc",
+    "container": "ktx2",
+    "compressed_file": "Queen_white_base_color.ktx2",
+    "uncompressed_bytes": 1698910,
+    "compressed_bytes": 2600051,
+    "ratio": 0.65,
+    "normal_map": false,
+    "ftex_file": "Queen_white_base_color.ftex",
+    "ftex_format": "bc7_srgb",
+    "ftex_bytes": 5592656
+  }
+}

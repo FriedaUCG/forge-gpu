@@ -1,0 +1,8 @@
+[submodule "external/SDL"]
+	path = external/SDL
+	url = https://github.com/FriedaUCG/SDL.git
+	branch = webgpu
+[submodule "external/SDL_shadercross"]
+	path = external/SDL_shadercross
+	url = https://github.com/FriedaUCG/SDL_shadercross.git
+	branch = webgpu

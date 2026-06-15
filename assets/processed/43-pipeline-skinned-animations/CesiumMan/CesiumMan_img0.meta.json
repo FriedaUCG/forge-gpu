@@ -1,0 +1,20 @@
+{
+  "source": "CesiumMan_img0.png",
+  "output": "CesiumMan_img0.png",
+  "original_width": 1024,
+  "original_height": 1024,
+  "output_width": 1024,
+  "output_height": 1024,
+  "mip_levels": [
+    {
+      "level": 0,
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "settings": {
+    "max_size": 2048,
+    "generate_mipmaps": false,
+    "output_format": "png"
+  }
+}
